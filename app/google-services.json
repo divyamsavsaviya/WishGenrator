@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "197264753466",
+    "project_id": "wishgenrator",
+    "storage_bucket": "wishgenrator.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:197264753466:android:6b61ed69c1db6545044603",
+        "android_client_info": {
+          "package_name": "com.aimulate.wishgenrator"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "197264753466-osc9k2ss6sf83i4qna8suqfu15r5l649.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDbHpyHArD8UAgJH1NrG6UpZ_O8F4or7xY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "197264753466-osc9k2ss6sf83i4qna8suqfu15r5l649.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
