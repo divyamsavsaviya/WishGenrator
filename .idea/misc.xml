@@ -4,9 +4,12 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="app/src/main/res/drawable/filter_item.xml" value="0.17222222222222222" />
+        <entry key="app/src/main/res/layout/activity_edit_wish.xml" value="0.2740740740740741" />
         <entry key="app/src/main/res/layout/activity_launch.xml" value="0.23703703703703705" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.16203703703703703" />
+        <entry key="app/src/main/res/layout/activity_wish.xml" value="0.16875" />
         <entry key="app/src/main/res/layout/filter_item.xml" value="0.22916666666666666" />
+        <entry key="app/src/main/res/layout/wish_item.xml" value="0.1" />
       </map>
     </option>
   </component>

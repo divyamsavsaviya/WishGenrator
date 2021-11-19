@@ -3,8 +3,10 @@ package com.aimulate.wishgenrator.adapters;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.DiffUtil;
@@ -31,8 +33,14 @@ public class FilterAdapter extends ListAdapter<Filter, FilterAdapter.FilterViewH
         }
     };
 
-    public FilterAdapter() {
+    public interface OnItemClickListener {
+        void onItemClicked(String filterId);
+    }
+
+    private OnItemClickListener clickListener;
+    public FilterAdapter(OnItemClickListener clickListener) {
         super(diffCallback);
+        this.clickListener = clickListener;
     }
 
     @NonNull
@@ -40,7 +48,7 @@ public class FilterAdapter extends ListAdapter<Filter, FilterAdapter.FilterViewH
     public FilterViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         View view = inflater.inflate(R.layout.filter_item,parent,false);
-        return new FilterViewHolder(view);
+        return new FilterViewHolder(view , clickListener);
     }
 
     @Override
@@ -54,11 +62,16 @@ public class FilterAdapter extends ListAdapter<Filter, FilterAdapter.FilterViewH
         private TextView filterDescription;
         private Filter filter;
 
-        public FilterViewHolder(@NonNull View itemView) {
+        public FilterViewHolder(@NonNull View itemView, OnItemClickListener clickListener) {
             super(itemView);
+            itemView.setOnClickListener(v -> {
+                clickListener.onItemClicked(filter.getId());
+            });
             filterHead = itemView.findViewById(R.id.filterHead);
             filterDescription = itemView.findViewById(R.id.filterDescription);
         }
+
+
 
         void bindTo(Filter filter) {
             this.filter = filter;

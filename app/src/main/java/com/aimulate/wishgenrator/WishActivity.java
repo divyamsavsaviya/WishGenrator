@@ -9,10 +9,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ProgressBar;
-import android.widget.Toast;
+import android.widget.TextView;
 
-import com.aimulate.wishgenrator.adapters.FilterAdapter;
-import com.aimulate.wishgenrator.data.Filter;
+import com.aimulate.wishgenrator.adapters.WishAdapter;
+import com.aimulate.wishgenrator.data.Wish;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -22,43 +22,50 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
-
+public class WishActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        ProgressBar progressBar = findViewById(R.id.progressBar);
+        setContentView(R.layout.activity_wish);
+        String filterId = getIntent().getStringExtra("FILTER_ID");
+        ProgressBar progressBar = findViewById(R.id.progressBarActivityWish);
         progressBar.setVisibility(View.VISIBLE);
-        RecyclerView recyclerView = findViewById(R.id.recyclerView);
-        FilterAdapter adapter = new FilterAdapter(filterId -> {
-            Intent intent = new Intent(MainActivity.this, WishActivity.class);
-            intent.putExtra("FILTER_ID",filterId);
-            startActivity(intent);
+        RecyclerView recyclerView = findViewById(R.id.recyclerViewActivityWish);
+        WishAdapter adapter = new WishAdapter(new WishAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClicked(String wish) {
+                Intent intent = new Intent(WishActivity.this,EditWishActivity.class);
+                intent.putExtra("WISH",wish);
+                startActivity(intent);
+            }
         });
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
 
-        List<Filter> filters = new ArrayList<>();
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("filters");
+        List<Wish> wishes = new ArrayList<>();
+        DatabaseReference reference = FirebaseDatabase.getInstance()
+                .getReference()
+                .child("filters")
+                .child(filterId)
+                .child("wishes");
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                filters.clear();
+                wishes.clear();
                 for (DataSnapshot snapshot1 : snapshot.getChildren()) {
-                    Filter filter = snapshot1.getValue(Filter.class);
-                    filters.add(filter);
+                    Wish wish = snapshot1.getValue(Wish.class);
+                    wishes.add(wish);
                 }
                 progressBar.setVisibility(View.INVISIBLE);
                 runOnUiThread(() -> {
-                    adapter.submitList(filters);
+                    adapter.submitList(wishes);
                 });
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(MainActivity.this, "Failed to load data", Toast.LENGTH_SHORT).show();
+
             }
         });
     }

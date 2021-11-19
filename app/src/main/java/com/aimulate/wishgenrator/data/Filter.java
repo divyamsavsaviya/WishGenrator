@@ -1,15 +1,15 @@
 package com.aimulate.wishgenrator.data;
 
 public class Filter {
+    private String id;
     private String head;
     private String description;
 
     public Filter() {
     }
 
-    public Filter(String head, String description, String imageURL) {
-        this.head = head;
-        this.description = description;
+    public String getId() {
+        return id;
     }
 
     public String getHead() {
