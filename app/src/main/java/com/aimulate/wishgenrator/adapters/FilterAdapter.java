@@ -71,8 +71,6 @@ public class FilterAdapter extends ListAdapter<Filter, FilterAdapter.FilterViewH
             filterDescription = itemView.findViewById(R.id.filterDescription);
         }
 
-
-
         void bindTo(Filter filter) {
             this.filter = filter;
             filterHead.setText(filter.getHead());
