@@ -1,18 +1,25 @@
 package com.aimulate.wishgenrator;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Html;
+import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.aimulate.wishgenrator.adapters.FontAdapter;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
 
 public class EditWishActivity extends AppCompatActivity {
 
@@ -21,19 +28,51 @@ public class EditWishActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_wish);
 
-        TextView textView = findViewById(R.id.textView);
         String wish = getIntent().getStringExtra("WISH");
+        Log.d("LOG--", "onCreate: " + "EditWishActivity -- initiated");
 
-        textView.setText("\uD835\uDD04, \uD835\uDD05, ℭ, \uD835\uDD07, \uD835\uDD08, \uD835\uDD09, \uD835\uDD0A, ℌ, ℑ, \uD835\uDD0D, \uD835\uDD0E, \uD835\uDD0F, \uD835\uDD10, \uD835\uDD11, \uD835\uDD12, \uD835\uDD13, \uD835\uDD14, ℜ, \uD835\uDD16, \uD835\uDD17, \uD835\uDD18, \uD835\uDD19, \uD835\uDD1A, \uD835\uDD1B, \uD835\uDD1C, ℨ");
-
-        textView.setOnClickListener(v -> {
-            ClipboardManager clipboardManager = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
-            ClipData clipData = ClipData.newPlainText("data",textView.getText());
-            clipboardManager.setPrimaryClip(clipData);
-            Toast.makeText(EditWishActivity.this, "Copied!", Toast.LENGTH_SHORT).show();
+        RecyclerView recyclerView = findViewById(R.id.fontWishRecyclerView);
+        FontAdapter adapter = new FontAdapter(new FontAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClicked(String fancyWish) {
+                Intent intent = new Intent(EditWishActivity.this,FinalShareActivity.class);
+                intent.putExtra("FANCY_WISH",fancyWish);
+                startActivity(intent);
+            }
         });
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setAdapter(adapter);
 
+        String[] fonts = getResources().getStringArray(R.array.fonts);
+        ArrayList<String> fancyWishes = new ArrayList<>();
+        for(int i = 0 ; i < fonts.length; i++) {
+            String fancyWish = generateText(wish,fonts[i]);
+            Log.d("LOG--", "onCreate: " + wish + " " +  fancyWish);
+            fancyWishes.add(fancyWish);
+        }
+        Log.d("LOG--", "onCreate: " + fancyWishes);
+        adapter.submitList(fancyWishes);
+    }
 
+    public String generateText(String wish,String font){
+        wish.toLowerCase(Locale.ROOT);
+        char[] arrayWish = wish.toCharArray();
+        String[] fontArray = font.split(" ");
+        String fancyWish = "";
 
+        for (char c : arrayWish) {
+            if (c != ' ') {
+                int index = getIndexOfAlphabet(c);
+                fancyWish = fancyWish + fontArray[index - 1];
+            } else {
+                fancyWish = fancyWish + " ";
+            }
+        }
+        return fancyWish;
+    }
+
+    private int getIndexOfAlphabet(char c) {
+        int tamp = c;
+        return (tamp - 96);
     }
 }

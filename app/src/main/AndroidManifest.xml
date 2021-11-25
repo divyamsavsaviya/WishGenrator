@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.WishGenrator">
         <activity
+            android:name=".FinalShareActivity"
+            android:exported="true" />
+        <activity
             android:name=".EditWishActivity"
             android:exported="true" />
         <activity

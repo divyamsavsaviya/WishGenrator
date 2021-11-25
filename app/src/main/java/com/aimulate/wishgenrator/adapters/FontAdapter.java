@@ -1,6 +1,7 @@
 package com.aimulate.wishgenrator.adapters;
 
 import android.graphics.fonts.Font;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +17,7 @@ import com.aimulate.wishgenrator.R;
 
 import java.util.Arrays;
 import java.util.Locale;
+import java.util.stream.Collectors;
 
 public class FontAdapter extends ListAdapter<String, FontAdapter.FontViewHolder> {
 
@@ -31,11 +33,14 @@ public class FontAdapter extends ListAdapter<String, FontAdapter.FontViewHolder>
         }
     };
 
-    public String wish;
+    public interface OnItemClickListener {
+        void onItemClicked(String fancyWish);
+    }
 
-    protected FontAdapter(String wish) {
+    private OnItemClickListener clickListener;
+    public FontAdapter(FontAdapter.OnItemClickListener clickListener) {
         super(diffCallback);
-        this.wish = wish;
+        this.clickListener = clickListener;
     }
 
     @NonNull
@@ -43,7 +48,7 @@ public class FontAdapter extends ListAdapter<String, FontAdapter.FontViewHolder>
     public FontAdapter.FontViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         View view = inflater.inflate(R.layout.wish_item,parent,false);
-        return new FontViewHolder(view);
+        return new FontViewHolder(view,clickListener);
     }
 
     @Override
@@ -52,35 +57,20 @@ public class FontAdapter extends ListAdapter<String, FontAdapter.FontViewHolder>
     }
 
     static class FontViewHolder extends RecyclerView.ViewHolder {
-
+        String wish;
         private TextView textViewWish;
 
-        public FontViewHolder(@NonNull View itemView) {
+        public FontViewHolder(@NonNull View itemView, FontAdapter.OnItemClickListener clickListener) {
             super(itemView);
             textViewWish = itemView.findViewById(R.id.textViewWish);
+            itemView.setOnClickListener(v -> {
+                clickListener.onItemClicked(wish);
+            });
         }
 
-
-        public void bindTo(String font) {
-        }
-
-        public String generateText(String wish,String font){
-            wish.toLowerCase(Locale.ROOT);
-            char[] arrayWish = wish.toCharArray();
-            char[] fontArray = font.toCharArray();
-
-            for(int i = 0 ; i < arrayWish.length ; i++) {
-                if(arrayWish[i] != ' '){
-                    int index = getIndexOfAlphabet(arrayWish[i]);
-                    arrayWish[i] = fontArray[index];
-                }
-            }
-            return arrayWish.toString();
-        }
-
-        private int getIndexOfAlphabet(char c) {
-            int tamp = c;
-            return tamp - 96;
+        public void bindTo(String wish) {
+            this.wish = wish;
+            textViewWish.setText(wish);
         }
     }
 }
