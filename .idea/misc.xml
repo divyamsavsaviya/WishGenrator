@@ -6,10 +6,13 @@
         <entry key="..\:/Users/Mehul Bhimani/Desktop/sgp/WishGenrator/app/src/main/res/layout/activity_edit_wish.xml" value="0.40260416666666665" />
         <entry key="..\:/Users/Mehul Bhimani/Desktop/sgp/WishGenrator/app/src/main/res/layout/activity_final_share.xml" value="0.3265625" />
         <entry key="app/src/main/res/drawable/filter_item.xml" value="0.17222222222222222" />
+        <entry key="app/src/main/res/layout/activity_about_application.xml" value="0.29583333333333334" />
         <entry key="app/src/main/res/layout/activity_edit_wish.xml" value="0.2740740740740741" />
         <entry key="app/src/main/res/layout/activity_final_share.xml" value="0.3098958333333333" />
+        <entry key="app/src/main/res/layout/activity_generate_wish.xml" value="0.3098958333333333" />
         <entry key="app/src/main/res/layout/activity_launch.xml" value="0.23703703703703705" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.16203703703703703" />
+        <entry key="app/src/main/res/layout/activity_start_screen.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_wish.xml" value="0.16875" />
         <entry key="app/src/main/res/layout/filter_item.xml" value="0.22916666666666666" />
         <entry key="app/src/main/res/layout/wish_item.xml" value="0.1" />

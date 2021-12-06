@@ -12,6 +12,21 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.WishGenrator">
         <activity
+            android:name=".PrivacyPolicyActivity"
+            android:exported="true" />
+        <activity
+            android:name=".AboutDeveloperActivity"
+            android:exported="true" />
+        <activity
+            android:name=".AboutApplicationActivity"
+            android:exported="true" />
+        <activity
+            android:name=".GenerateWishActivity"
+            android:exported="true" />
+        <activity
+            android:name=".StartScreenActivity"
+            android:exported="true" />
+        <activity
             android:name=".FinalShareActivity"
             android:exported="true" />
         <activity

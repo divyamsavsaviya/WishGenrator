@@ -17,7 +17,7 @@ public class LaunchActivity extends AppCompatActivity {
         Log.d("LOG--", "onCreate: activity_launch launched" );
         Handler handler = new Handler();
         handler.postDelayed(() -> {
-            Intent intent = new Intent(LaunchActivity.this, MainActivity.class);
+            Intent intent = new Intent(LaunchActivity.this, StartScreenActivity.class);
             startActivity(intent);
             finish();
         }, 2500);
