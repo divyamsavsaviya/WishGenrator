@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.WishGenrator">
         <activity
+            android:name=".CustomWishActivity"
+            android:exported="true" />
+        <activity
             android:name=".PrivacyPolicyActivity"
             android:exported="true" />
         <activity
@@ -19,9 +22,6 @@
             android:exported="true" />
         <activity
             android:name=".AboutApplicationActivity"
-            android:exported="true" />
-        <activity
-            android:name=".GenerateWishActivity"
             android:exported="true" />
         <activity
             android:name=".StartScreenActivity"

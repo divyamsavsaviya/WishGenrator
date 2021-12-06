@@ -9,12 +9,15 @@ import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
 import android.text.Html;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.aimulate.wishgenrator.adapters.FontAdapter;
+import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -28,22 +31,20 @@ public class EditWishActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_wish);
 
-        String wish = getIntent().getStringExtra("WISH");
-        Log.d("LOG--", "onCreate: " + "EditWishActivity -- initiated");
+        String wish = getIntent().getStringExtra(getString(R.string.KEY_WISH));
+        TextView textView = findViewById(R.id.textViewEditWish);
+        textView.setText(wish);
+        String[] fonts = getResources().getStringArray(R.array.fonts);
 
         RecyclerView recyclerView = findViewById(R.id.fontWishRecyclerView);
-        FontAdapter adapter = new FontAdapter(new FontAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClicked(String fancyWish) {
-                Intent intent = new Intent(EditWishActivity.this,FinalShareActivity.class);
-                intent.putExtra("FANCY_WISH",fancyWish);
-                startActivity(intent);
-            }
+        FontAdapter adapter = new FontAdapter(fancyWish -> {
+            Intent intent = new Intent(EditWishActivity.this,FinalShareActivity.class);
+            intent.putExtra("FANCY_WISH",fancyWish);
+            startActivity(intent);
         });
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
 
-        String[] fonts = getResources().getStringArray(R.array.fonts);
         ArrayList<String> fancyWishes = new ArrayList<>();
         for(int i = 0 ; i < fonts.length; i++) {
             String fancyWish = generateText(wish,fonts[i]);

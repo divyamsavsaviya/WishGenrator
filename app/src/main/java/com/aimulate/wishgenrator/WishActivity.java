@@ -36,7 +36,7 @@ public class WishActivity extends AppCompatActivity {
             @Override
             public void onItemClicked(String wish) {
                 Intent intent = new Intent(WishActivity.this,EditWishActivity.class);
-                intent.putExtra("WISH",wish);
+                intent.putExtra(getString(R.string.KEY_WISH),wish);
                 startActivity(intent);
             }
         });

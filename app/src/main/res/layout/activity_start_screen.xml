@@ -13,12 +13,12 @@
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="100dp"
-        android:layout_weight="1"
         android:layout_height="100dp"
         android:layout_gravity="center"
-        android:padding="8dp"
         android:layout_margin="8dp"
-        app:srcCompat="@drawable/logo_aimulate"/>
+        android:layout_weight="1"
+        android:padding="8dp"
+        app:srcCompat="@drawable/ic_launcher_background" />
 
     <Button
         android:id="@+id/buttonGenerateWish"
