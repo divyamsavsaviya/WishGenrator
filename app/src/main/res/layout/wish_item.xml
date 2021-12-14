@@ -8,15 +8,17 @@
     android:orientation="horizontal"
     android:padding="8dp">
 
-
     <TextView
         android:id="@+id/textViewWish"
         style="@style/TextAppearance.MaterialComponents.Headline5"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center"
+        android:background="@drawable/custom_filter"
         android:gravity="center"
+        android:padding="16dp"
         android:text="Wish"
-        android:textSize="32sp"
+        android:textColor="@color/white"
+        android:textSize="20sp"
         android:textStyle="bold" />
 </LinearLayout>

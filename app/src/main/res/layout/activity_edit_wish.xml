@@ -5,26 +5,30 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:padding="8dp"
+    android:background="@color/rich_black"
     tools:context=".EditWishActivity">
 
     <TextView
         android:id="@+id/textViewEditWish"
         style="@style/TextAppearance.MaterialComponents.Headline5"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_margin="16dp"
+        android:layout_margin="8dp"
         android:gravity="center"
+        android:textColor="@color/white"
+        android:background="@drawable/custom_button"
         android:padding="8dp"
         android:text="Happy birthday brother may all your wishes comes true"
-        android:textSize="16sp"
+        android:textSize="20sp"
         android:textStyle="bold" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/fontWishRecyclerView"
         android:layout_width="match_parent"
+        android:background="@drawable/custom_recycler"
         android:layout_height="match_parent"
-        android:layout_margin="16dp"
-        android:padding="8dp"
+        android:padding="16dp"
         tools:listitem="@layout/wish_item" />
 </LinearLayout>

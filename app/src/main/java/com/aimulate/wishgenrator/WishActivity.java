@@ -7,9 +7,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.aimulate.wishgenrator.adapters.WishAdapter;
 import com.aimulate.wishgenrator.data.Wish;
@@ -28,6 +30,7 @@ public class WishActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_wish);
+        Toast.makeText(WishActivity.this, "Wish Activity Launched", Toast.LENGTH_SHORT).show();
         String filterId = getIntent().getStringExtra("FILTER_ID");
         ProgressBar progressBar = findViewById(R.id.progressBarActivityWish);
         progressBar.setVisibility(View.VISIBLE);
@@ -57,6 +60,8 @@ public class WishActivity extends AppCompatActivity {
                     Wish wish = snapshot1.getValue(Wish.class);
                     wishes.add(wish);
                 }
+                Log.d("LOG--", "onDataChange: " + wishes);
+                Toast.makeText(WishActivity.this, "Loadded Successfully", Toast.LENGTH_SHORT).show();
                 progressBar.setVisibility(View.INVISIBLE);
                 runOnUiThread(() -> {
                     adapter.submitList(wishes);

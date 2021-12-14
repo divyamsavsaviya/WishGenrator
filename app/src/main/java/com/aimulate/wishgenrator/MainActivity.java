@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
@@ -25,11 +26,11 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Log.d("LOG--", "onCreate: " + "Main Activity Launched");
 
         Button buttonGenerateCustomWish = findViewById(R.id.buttonGenerateCustomWish);
         buttonGenerateCustomWish.setOnClickListener(v -> {
@@ -56,8 +57,10 @@ public class MainActivity extends AppCompatActivity {
                 for (DataSnapshot snapshot1 : snapshot.getChildren()) {
                     Filter filter = snapshot1.getValue(Filter.class);
                     filters.add(filter);
+                    Log.d("LOG--", "onDataChange: " + filter);
                 }
-                progressBar.setVisibility(View.INVISIBLE);
+                Toast.makeText(MainActivity.this, "Filtters Loadded", Toast.LENGTH_SHORT).show();
+                progressBar.setVisibility(View.GONE);
                 runOnUiThread(() -> {
                     adapter.submitList(filters);
                 });
