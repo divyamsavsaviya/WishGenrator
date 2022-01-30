@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_gravity="center"
     android:background="@color/rich_black"
+    android:gravity="bottom"
     android:orientation="vertical"
     android:padding="8dp"
     tools:context=".FinalShareActivity">
@@ -26,64 +28,69 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:layout_gravity="bottom"
-        android:orientation="horizontal">
-
-        <com.airbnb.lottie.LottieAnimationView
-            android:id="@+id/lottieInstagram"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_weight="1"
-            app:lottie_autoPlay="true"
-            app:lottie_loop="true"
-            android:onClick="shareOnInstagram"
-            app:lottie_rawRes="@raw/instagram_animation" />
-
-        <com.airbnb.lottie.LottieAnimationView
-            android:id="@+id/lottieMessenger"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_weight="1"
-            android:onClick="shareOnMessenger"
-            app:lottie_autoPlay="true"
-            app:lottie_loop="true"
-            app:lottie_rawRes="@raw/messenger_animation" />
-
-        <com.airbnb.lottie.LottieAnimationView
-            android:id="@+id/lottieTwitter"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_weight="1"
-            app:lottie_autoPlay="true"
-            app:lottie_loop="true"
-            android:onClick="shareOnTwitter"
-            app:lottie_rawRes="@raw/twitter_animation" />
-
-        <com.airbnb.lottie.LottieAnimationView
-            android:id="@+id/lottieWhatsApp"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_weight="1"
-            android:onClick="shareOnWhatsApp"
-            app:lottie_autoPlay="true"
-            app:lottie_loop="true"
-            app:lottie_rawRes="@raw/whatsapp_animation" />
-
-    </LinearLayout>
-
     <android.widget.Button
-        android:id="@+id/button"
+        android:id="@+id/buttonWhatsapp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:layout_margin="8dp"
         android:background="@drawable/custom_button"
         android:padding="16dp"
-        android:text="Share"
+        android:text="Share using Whatsapp"
+        android:textAllCaps="false"
         android:textColor="@color/white"
-        android:textSize="20sp"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewFancyWish" />
+
+    <android.widget.Button
+        android:id="@+id/buttonInstagram"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="8dp"
+        android:background="@drawable/custom_button"
+        android:padding="16dp"
+        android:text="Share using Instagram"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewFancyWish" />
+
+    <android.widget.Button
+        android:id="@+id/buttonOther"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="8dp"
+        android:background="@drawable/custom_button"
+        android:padding="16dp"
+        android:text="Share using other Applications"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewFancyWish" />
+
+    <android.widget.Button
+        android:id="@+id/buttonInvite"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_margin="8dp"
+        android:background="@drawable/custom_button"
+        android:padding="16dp"
+        android:text="Refer application"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

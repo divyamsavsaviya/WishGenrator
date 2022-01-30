@@ -25,43 +25,49 @@ public class FinalShareActivity extends AppCompatActivity {
 
         fancyWish = getIntent().getStringExtra("FANCY_WISH");
         TextView textViewFancyWish = findViewById(R.id.textViewFancyWish);
-        Button button = findViewById(R.id.button);
-        button.setOnClickListener(v -> {
+        Button buttonWhatsapp = findViewById(R.id.buttonWhatsapp);
+        Button buttonInstagram = findViewById(R.id.buttonInstagram);
+        Button buttonOther = findViewById(R.id.buttonOther);
+        Button buttonInvite = findViewById(R.id.buttonInvite);
+        textViewFancyWish.setText(fancyWish);
+
+        buttonWhatsapp.setOnClickListener(v -> {
+            sendMessage(fancyWish, "com.whatsapp");
+        });
+        buttonInstagram.setOnClickListener(v -> {
+            sendMessage(fancyWish, "com.instagram.android");
+        });
+        buttonOther.setOnClickListener(v -> {
             Intent sendIntent = new Intent();
             sendIntent.setAction(Intent.ACTION_SEND);
-            sendIntent.putExtra(Intent.EXTRA_TEXT, fancyWish + "\n Application description\n its working");
+            sendIntent.putExtra(Intent.EXTRA_TEXT, fancyWish);
             sendIntent.setType("text/plain");
 
             Intent shareIntent = Intent.createChooser(sendIntent, null);
             startActivity(shareIntent);
         });
-        textViewFancyWish.setText(fancyWish);
+
+        buttonInvite.setOnClickListener(v -> {
+            Intent sendIntent = new Intent();
+            sendIntent.setAction(Intent.ACTION_SEND);
+            sendIntent.putExtra(Intent.EXTRA_TEXT, "https://play.google.com/store/apps/details?id=com.instagram.android"
+                    + "\n\ndownload this application to create awesome wishes");
+            sendIntent.setType("text/plain");
+
+            Intent shareIntent = Intent.createChooser(sendIntent, null);
+            startActivity(shareIntent);
+        });
+
 
         textViewFancyWish.setOnClickListener(v -> {
             ClipboardManager clipboardManager = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
-            ClipData clipData = ClipData.newPlainText("data",textViewFancyWish.getText());
+            ClipData clipData = ClipData.newPlainText("data", textViewFancyWish.getText());
             clipboardManager.setPrimaryClip(clipData);
             Toast.makeText(FinalShareActivity.this, "Copied!", Toast.LENGTH_SHORT).show();
         });
     }
 
-    public void shareOnInstagram(View view) {
-        sendMessage(fancyWish,"com.instagram");
-    }
-
-    public void shareOnWhatsApp(View view) {
-        sendMessage(fancyWish,"com.whatsapp");
-    }
-
-    public void shareOnTwitter(View view) {
-        sendMessage(fancyWish,"com.twitter.android");
-    }
-
-    public void shareOnMessenger(View view) {
-        sendMessage(fancyWish,"com.messenger");
-    }
-
-    private void sendMessage(String wish,String target_app_package) {
+    private void sendMessage(String wish, String target_app_package) {
         Intent intent = new Intent(Intent.ACTION_SEND);
         intent.setType("text/plain");
         intent.setPackage(target_app_package);

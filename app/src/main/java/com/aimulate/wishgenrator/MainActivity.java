@@ -30,7 +30,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Log.d("LOG--", "onCreate: " + "Main Activity Launched");
 
         Button buttonGenerateCustomWish = findViewById(R.id.buttonGenerateCustomWish);
         buttonGenerateCustomWish.setOnClickListener(v -> {
@@ -59,7 +58,6 @@ public class MainActivity extends AppCompatActivity {
                     filters.add(filter);
                     Log.d("LOG--", "onDataChange: " + filter);
                 }
-                Toast.makeText(MainActivity.this, "Filtters Loadded", Toast.LENGTH_SHORT).show();
                 progressBar.setVisibility(View.GONE);
                 runOnUiThread(() -> {
                     adapter.submitList(filters);
@@ -68,6 +66,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
+                Log.e("LOG--", "onCancelled: ", error.toException());
                 Toast.makeText(MainActivity.this, "Failed to load data", Toast.LENGTH_SHORT).show();
             }
         });
